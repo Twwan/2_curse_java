@@ -1,27 +1,35 @@
+import java.util.Stack;
+
 public class Main {
 
-    public static double mnk(double I[], double U[], int N) {
+    public static void main(String[] args) throws Exception {
+        Stack<Double> stackI = new Stack<>();
+        Stack<Double> stackU = new Stack<>();
+        
+        stackI.push(4.93);
+        stackI.push(4.935);
+        
+        stackU.push(100.0);
+        stackU.push(100.2);
+        System.out.println(stackI);
+        System.out.println(stackU);
+
+        int N = 2;
         double R = 0;
+        double UU = 0;
+        double II = 0;
         // Это числитель из формулы
         double UI = 0;
         // Это знаменатель из формулы
         double I2 = 0;
         for (int i = 0; i < N; i++) {
-            UI += U[i] * I[i];
-            I2 += I[i] * I[i];
+            UU = stackU.pop();
+            II = stackI.pop();
+            UI += UU * II;
+            I2 += II * II;
         }
         // Это результат как по формуле
         R = UI / I2;
-        return R;
-    }
-
-    public static void main(String[] args) throws Exception {
-        // Массив значений силы тока
-        double I[] = { 4.93, 4.935, 4.941, 4.956, 4.964, 4.985, 4.993, 5.007, 5.018, 5.114 };
-        // Массив значений напряжения
-        double U[] = { 100, 100.2, 100.4, 99.95, 100.153, 99.81, 100.03, 100.25, 100.32, 100.27 };
-        // Получаем приближенное значение сопротивления
-        double R = mnk(I, U, 10);
         System.out.println("Приближенное число R = " + R + " ом.");
     }
 }
