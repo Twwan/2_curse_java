@@ -7,32 +7,28 @@ public class Main {
         Scanner in = new Scanner(System.in);
         // Создаем массив для целых чисел
         List<Integer> array = new ArrayList<Integer>();
-        System.out.println("Вводите значения массива по одному числу");
+
+        System.out.println("Вводите значения массива по одному числу\n(чтобы закончить ввод введите 10000)");
         int index = 1;
-        // Для понимания есть ли отр. числа
+        // Для будущего понимания есть ли отр. числа
         boolean prov = false;
         // Сумма чисел до первого отр. числа
         int otrSumm = 0;
         // Чтобы знать индекс отр. числа
         int otrIndex = 0;
         while (true) {
-            try {
-                // Если размер массива больше 16, выброс исключения
-                if (array.size() > 16) {
-                    System.out.println("[-] Массив вышел за границы!\n[-] Ввод завершается!");
-                    break;
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-
             System.out.print("[" + index + "] значение: ");
             index += 1;
             try {
+                
                 temp = in.nextInt();
                 // Если введённое знач. отр., то меняем на true
                 if (temp < 0) {
                     prov = true;
+                }
+                if (temp == 10000) {
+                    System.out.println("Ввод завершен!");
+                    break;
                 }
                 // Вылавливаем исключение (ошибку) если ввести не целое число
             } catch (Exception e) {
@@ -41,17 +37,27 @@ public class Main {
                 // Если всё ок, добавляем это число в массив
             } finally {
                 array.add(temp);
+                }
+            
+            
+            if (array.size() > 16) {
+            try {
+                int t = array.size() - 16;
+                int t1 = 16;
+                for (int i = 0; i < t; i++) {
+                    array.remove(t1);
+                }
+            } catch (MyExceptionClass e) {
+                System.out.println(e.getMessage());
+                } 
             }
         }
 
-        // Удаляем последний добавленный элемент, так как он вышел за границы,
-        // но успел добавится
-        array.remove(array.size() - 1);
 
         // Закрываем поток ввода
         in.close();
 
-        // Если попалось отр. число, то эта часть кода заработает.
+        // Если попалось отр. число, то эта часть кода зарабоает.
         if (prov == true) {
             // Пробегаемся по массиву и ищем индекс первого отр. числа
             for (int i = 0; i < array.size(); i++) {
