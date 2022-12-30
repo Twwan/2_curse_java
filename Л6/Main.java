@@ -3,18 +3,17 @@ import java.util.Stack;
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        // Создание стеков
         Stack<Double> stackI = new Stack<>();
         Stack<Double> stackU = new Stack<>();
-        
+
         stackI.push(4.93);
         stackI.push(4.935);
-        
+
         stackU.push(100.0);
         stackU.push(100.2);
-        System.out.println(stackI);
-        System.out.println(stackU);
 
-        int N = 2;
+        int N = stackI.size();
         double R = 0;
         double UU = 0;
         double II = 0;
